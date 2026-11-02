@@ -5,15 +5,18 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   app.enableCors({
-    origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+    origin: [
+      'http://localhost:5173',
+      'task-manager-frontend-react.vercel.app',
+    ],
+    methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
   });
 
   const port = process.env.PORT || 3000;
 
   await app.listen(port, '0.0.0.0');
-
-  console.log(`Application running on port ${port}`);
 }
 
 void bootstrap();
