@@ -7,6 +7,8 @@ import { ConfigModule } from '@nestjs/config';
 import { TasksModule } from './tasks/tasks.module';
 import { UsersModule } from './users/users.module';
 import { CommentsModule } from './comments/comments.module';
+import { AuthModule } from './auth/auth.module';
+import { AttachmentsModule } from './attachments/attachments.module';
 
 @Module({
   imports: [
@@ -19,6 +21,8 @@ import { CommentsModule } from './comments/comments.module';
     TasksModule,
     UsersModule,
     CommentsModule,
+    AuthModule,
+    AttachmentsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

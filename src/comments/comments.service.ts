@@ -12,7 +12,7 @@ export class CommentsService {
   constructor(private readonly databaseService: DatabaseService) {}
 
   // GET /api/comments
-  async getComments(): Promise<Comment[]> {
+  async getComments(taskId?: number): Promise<Comment[]> {
     const result = await this.databaseService.query<Comment>(
       `SELECT id, task_id, user_id, content, created_at
        FROM comments

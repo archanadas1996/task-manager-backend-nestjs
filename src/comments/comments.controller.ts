@@ -6,6 +6,7 @@ import {
   Delete,
   Param,
   Body,
+  Query,
   ParseIntPipe,
   HttpCode,
   HttpStatus,
@@ -17,10 +18,12 @@ import { CommentsService } from './comments.service';
 export class CommentsController {
   constructor(private readonly commentsService: CommentsService) {}
 
-  // GET /api/comments
+  // GET /api/comments?task_id=1
   @Get()
-  getComments() {
-    return this.commentsService.getComments();
+  getComments(@Query('task_id') taskId?: string) {
+    return this.commentsService.getComments(
+      taskId ? Number(taskId) : undefined,
+    );
   }
 
   // GET /api/comments/:id
